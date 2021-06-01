@@ -27,3 +27,5 @@ sudo systemctl restart mongod
 
 # Instalando mongoose para o node se conectar com o mongo
 - yarn add mongoose
+
+# Criando tabela de Usuarios na pasta models/user.js
