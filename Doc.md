@@ -24,3 +24,6 @@ Reinicie o MongoDB.
 Você pode reiniciar o mongodprocesso emitindo o seguinte comando:
 
 sudo systemctl restart mongod
+
+# Instalando mongoose para o node se conectar com o mongo
+- yarn add mongoose
