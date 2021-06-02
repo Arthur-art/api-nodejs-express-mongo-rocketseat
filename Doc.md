@@ -29,3 +29,5 @@ sudo systemctl restart mongod
 - yarn add mongoose
 
 # Criando tabela de Usuarios na pasta models/user.js
+
+# Criando rota dentro da pasta controller para autentificacao do usuario
