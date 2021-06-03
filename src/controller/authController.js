@@ -1,6 +1,6 @@
 const express = require('express');
 
-const User = require('../models/User');
+const User = require('../models/user');
 
 const router = express.Router()
 
@@ -12,3 +12,7 @@ router.post("/register", async (req, res) => {
         console.log('Erro ao tentar criar usuario', error)
     }
 })
+
+// Utilizando app(expressObjeto) do index, para sempre que acessar auth/register sera executado
+// o servico router de criacao de usuario
+module.exports = app => app.use('/auth', router)

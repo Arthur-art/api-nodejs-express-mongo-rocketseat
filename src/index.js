@@ -11,4 +11,5 @@ app.get("/rocketseat", (req, res) => {
     return res.send("Estudando NodeJs-express na Rocketseat")
 });
 
+//Repassando para o controller o app
 require('./controller/authController')(app);

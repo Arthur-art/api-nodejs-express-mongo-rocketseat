@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require('../database');
 
 //Criando tabela de usuario
 const UserSchema = new mongoose.Schema({
@@ -19,7 +19,7 @@ const UserSchema = new mongoose.Schema({
     },
     createdAt: {
         type: Date,
-        default: date.now()
+        default: Date.now()
     }
 })
 

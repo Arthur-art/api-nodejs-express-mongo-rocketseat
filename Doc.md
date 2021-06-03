@@ -13,13 +13,13 @@ Você pode opcionalmente garantir que o MongoDB iniciará após uma reinicializa
 
 sudo systemctl enable mongod
 
-- 3
+- 2
 Pare o MongoDB. 
 Conforme necessário, você pode interromper o mongodprocesso emitindo o seguinte comando:
 
 sudo systemctl stop mongod
 
-- 4
+- 3
 Reinicie o MongoDB. 
 Você pode reiniciar o mongodprocesso emitindo o seguinte comando:
 
