@@ -4,6 +4,8 @@ const User = require('../models/user');
 
 const bcrypt = require('bcryptjs')
 
+const jwt = require('jsonwebtoken')
+
 const router = express.Router()
 
 //Criando rota de cadastro de usuario
@@ -36,6 +38,8 @@ router.post("/authenticate", async (req, res)=>{
    if(!await bcrypt.compare(password, user.password)){
         return res.status(400).send({error: 'Senha invalida'})
    }
+
+    const token = jwt.sign({id: user.id})   
 
    res.send({user});
 });

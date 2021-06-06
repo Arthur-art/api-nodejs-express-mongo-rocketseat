@@ -45,3 +45,5 @@ sudo systemctl restart mongod
 # Adicionando lib bcryptjs para criptografar a senha
 - yarn add bcryptjs
 
+# Utilizando pacote jsonwebtoken para criar um token apos validar a senha do usuario
+- yarn add jsonwebtoken
