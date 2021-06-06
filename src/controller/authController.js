@@ -6,11 +6,17 @@ const router = express.Router()
 
 //Criando rota de cadastro de usuario
 router.post("/register", async (req, res) => {
+    //Verificando se o email ja existe no schema
+    const {email} = req.body;
     try {
+        if(await User.findOne({email})){
+            res.send('Usuario já existe');
+        }
         const user = await User.create(req.body);
         return res.send({user})
     } catch (error) {
-        console.log('Erro ao tentar criar usuario', error)
+        return res.send('Erro ao tentar criar usuario', error)
+
     }
 })
 
