@@ -18,7 +18,19 @@ router.post("/register", async (req, res) => {
         return res.send('Erro ao tentar criar usuario', error)
 
     }
-})
+});
+
+// Criando rota de autentificacao
+router.post("/authenticate", (req, res)=>{
+   const {email, password} = req.body;
+
+   //Buscando email e senha do user no mongodb
+   const user = await User.findOne({email}).select('+password');
+
+   if(!user){
+       return res.status(400).send({error: "Usuario não encontrado"})
+   }
+});
 
 // Utilizando app(expressObjeto) do index, para sempre que acessar auth/register sera executado
 // o servico router de criacao de usuario
