@@ -44,3 +44,4 @@ sudo systemctl restart mongod
 
 # Adicionando lib bcryptjs para criptografar a senha
 - yarn add bcryptjs
+

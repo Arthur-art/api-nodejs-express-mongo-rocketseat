@@ -2,6 +2,8 @@ const express = require('express');
 
 const User = require('../models/user');
 
+const bcrypt = require('bcryptjs')
+
 const router = express.Router()
 
 //Criando rota de cadastro de usuario
@@ -21,7 +23,7 @@ router.post("/register", async (req, res) => {
 });
 
 // Criando rota de autentificacao
-router.post("/authenticate", (req, res)=>{
+router.post("/authenticate", async (req, res)=>{
    const {email, password} = req.body;
 
    //Buscando email e senha do user no mongodb
@@ -30,6 +32,12 @@ router.post("/authenticate", (req, res)=>{
    if(!user){
        return res.status(400).send({error: "Usuario não encontrado"})
    }
+   //Verificando se o password do corpo da requisicao é o mesmo do cadastrado no mongodb
+   if(!await bcrypt.compare(password, user.password)){
+        return res.status(400).send({error: 'Senha invalida'})
+   }
+
+   res.send({user});
 });
 
 // Utilizando app(expressObjeto) do index, para sempre que acessar auth/register sera executado
