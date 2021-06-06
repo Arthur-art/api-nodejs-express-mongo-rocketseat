@@ -8,6 +8,7 @@ const router = express.Router()
 router.post("/register", async (req, res) => {
     try {
         const user = await User.create(req.body);
+        return res.send({user})
     } catch (error) {
         console.log('Erro ao tentar criar usuario', error)
     }
