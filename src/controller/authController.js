@@ -29,19 +29,24 @@ router.post("/authenticate", async (req, res)=>{
    const {email, password} = req.body;
 
    //Buscando email e senha do user no mongodb
-   const user = await User.findOne({email}).select('+password');
+  try{
+    const user = await User.findOne({email}).select('+password');
 
-   if(!user){
-       return res.status(400).send({error: "Usuario não encontrado"})
-   }
-   //Verificando se o password do corpo da requisicao é o mesmo do cadastrado no mongodb
-   if(!await bcrypt.compare(password, user.password)){
+    if(!user){
+        return res.status(400).send({error: "Usuario não encontrado"})
+    }
+
+    //Verificando se o password do corpo da requisicao é o mesmo do cadastrado no mongodb
+    if(!await bcrypt.compare(password, user.password)){
         return res.status(400).send({error: 'Senha invalida'})
-   }
+    }
 
-    const token = jwt.sign({id: user.id})   
+    res.send({user});
+  }catch(erro){
+      return res.send('error1')
+  }
 
-   res.send({user});
+   
 });
 
 // Utilizando app(expressObjeto) do index, para sempre que acessar auth/register sera executado
