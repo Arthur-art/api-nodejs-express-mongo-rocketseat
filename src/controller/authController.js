@@ -6,6 +6,8 @@ const bcrypt = require('bcryptjs')
 
 const jwt = require('jsonwebtoken')
 
+const authConfig = require('../config/auth.json')
+
 const router = express.Router()
 
 //Criando rota de cadastro de usuario
@@ -41,9 +43,14 @@ router.post("/authenticate", async (req, res)=>{
         return res.status(400).send({error: 'Senha invalida'})
     }
 
-    res.send({user});
-  }catch(erro){
-      return res.send('error1')
+    const token = jwt.sign({id: user.id}, authConfig.secret, {
+        //O token irá expirar em 1 dia
+        expiresIn: 86400,
+    })
+
+    res.send({user, token});
+  }catch(error){
+      return res.send('error', error)
   }
 
    
