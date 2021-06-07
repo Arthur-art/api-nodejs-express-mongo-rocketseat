@@ -13,3 +13,4 @@ app.get("/rocketseat", (req, res) => {
 
 //Repassando para o controller o app
 require('./controller/authController')(app);
+require('./controller/projectController')(app);
