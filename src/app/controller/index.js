@@ -1,7 +1,7 @@
-import fs from 'fs';
-import path from 'path';
+const fs = require('fs');
+const path = require('path');
 
-export default app =>{
+module.exports = app =>{
     fs  //Ler esse diretorio
         .readdirSync(__dirname)
         //Filtrando todos os arquivos desta pasta que não possuim . no começo e que não sejam o index.js
