@@ -51,3 +51,7 @@ sudo systemctl restart mongod
 # Criando arquivo auth.json na pasta config para trabalhar com token do jsonwebtoken
 
 # Trabalhando com middlewares para validar token de usuario
+
+# Adicionando modules fs e path 
+- fs para trabalhar com file system do node e path para trabalhar com caminhos
+- yarn add fs path

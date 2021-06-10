@@ -1,24 +1,24 @@
-const express = require('express');
+import { Router } from 'express';
 
-const User = require('../models/user');
+import { findOne, create } from '../models/user';
 
-const bcrypt = require('bcryptjs')
+import { compare } from 'bcryptjs';
 
-const jwt = require('jsonwebtoken')
+import { sign } from 'jsonwebtoken';
 
-const authConfig = require('../../config/auth.json')
+import { secret } from '../../config/auth.json';
 
-const router = express.Router()
+const router = Router()
 
 //Criando rota de cadastro de usuario
 router.post("/register", async (req, res) => {
     //Verificando se o email ja existe no schema
     const {email} = req.body;
     try {
-        if(await User.findOne({email})){
+        if(await findOne({email})){
             res.send('Usuario já existe');
         }
-        const user = await User.create(req.body);
+        const user = await create(req.body);
         return res.send({user})
     } catch (error) {
         return res.send('Erro ao tentar criar usuario', error)
@@ -32,18 +32,18 @@ router.post("/authenticate", async (req, res)=>{
 
    //Buscando email e senha do user no mongodb
   try{
-    const user = await User.findOne({email}).select('+password');
+    const user = await findOne({email}).select('+password');
 
     if(!user){
         return res.status(400).send({error: "Usuario não encontrado"})
     }
 
     //Verificando se o password do corpo da requisicao é o mesmo do cadastrado no mongodb
-    if(!await bcrypt.compare(password, user.password)){
+    if(!await compare(password, user.password)){
         return res.status(400).send({error: 'Senha invalida'})
     }
 
-    const token = jwt.sign({id: user.id}, authConfig.secret, {
+    const token = sign({id: user.id}, secret, {
         //O token irá expirar em 1 dia
         expiresIn: 86400,
     })
@@ -58,4 +58,4 @@ router.post("/authenticate", async (req, res)=>{
 
 // Utilizando app(expressObjeto) do index, para sempre que acessar auth/register sera executado
 // o servico router de criacao de usuario
-module.exports = app => app.use('/auth', router)
+export default app => app.use('/auth', router)

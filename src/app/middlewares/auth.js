@@ -1,7 +1,7 @@
-const jwt = require('jsonwebtoken');
-const authConfig = require('../config/auth.json')
+import { verify } from 'jsonwebtoken';
+import { secret } from '../config/auth.json';
 
-module.exports = (req, res, next)=>{
+export default (req, res, next)=>{
     const authHearder = req.headers.authorization;
 
     if(!authHearder){
@@ -17,7 +17,7 @@ module.exports = (req, res, next)=>{
     if(!/^Bearer$/i.test(scheme)){
         return res.status(401).send({error:"Token não possue Bearer, Token invalido"})
     }
-    jwt.verify(token, authConfig.secret, (err, decoded)=>{
+    verify(token, secret, (err, decoded)=>{
         if(err){
             res.status(401).send({error: "Token invalido"})
         }
