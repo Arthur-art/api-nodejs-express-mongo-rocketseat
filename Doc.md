@@ -49,3 +49,5 @@ sudo systemctl restart mongod
 - yarn add jsonwebtoken
 
 # Criando arquivo auth.json na pasta config para trabalhar com token do jsonwebtoken
+
+# Trabalhando com middlewares para validar token de usuario
