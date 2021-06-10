@@ -57,3 +57,7 @@ sudo systemctl restart mongod
 - yarn add fs path
 - Criando metodo no index.js do controller para que todos os controllers agora sejam automaticamente 
 adicionados ao index do projeto
+
+# Utilizando mailtrap para realizar testes de envio de email 
+- Para node 
+    - npm install nodemailer
