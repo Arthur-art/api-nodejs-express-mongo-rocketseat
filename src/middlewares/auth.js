@@ -1,3 +1,6 @@
+const jwt = require('jsonwebtoken');
+const authConfig = require('../config/auth.json')
+
 module.exports = (req, res, next)=>{
     const authHearder = req.headers.authorization;
 
@@ -14,4 +17,12 @@ module.exports = (req, res, next)=>{
     if(!/^Bearer$/i.test(scheme)){
         return res.status(401).send({error:"Token não possue Bearer, Token invalido"})
     }
+    jwt.verify(token, authConfig.secret, (err, decoded)=>{
+        if(err){
+            res.status(401).send({error: "Token invalido"})
+        }
+
+        req.userId = decoded.id
+        return next()
+    })
 }

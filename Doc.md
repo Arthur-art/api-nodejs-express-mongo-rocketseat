@@ -5,10 +5,10 @@
 # Instalando mongodb
 - Criando pasta dabase no src
 - instalando mongodb 
- - https://docs.mongodb.com/manual/installation/
-- 1 Verifique se o MongoDB foi iniciado com sucesso. 
-
-sudo systemctl start mongod
+    - https://docs.mongodb.com/manual/installation/
+- 1 Iniciando Mongodb 
+    - sudo systemctl start mongod
+- 2 Verifique se o MongoDB foi iniciado com sucesso. 
 
 sudo systemctl status mongod
 
