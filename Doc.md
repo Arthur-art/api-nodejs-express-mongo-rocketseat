@@ -55,3 +55,5 @@ sudo systemctl restart mongod
 # Adicionando modules fs e path 
 - fs para trabalhar com file system do node e path para trabalhar com caminhos
 - yarn add fs path
+- Criando metodo no index.js do controller para que todos os controllers agora sejam automaticamente 
+adicionados ao index do projeto

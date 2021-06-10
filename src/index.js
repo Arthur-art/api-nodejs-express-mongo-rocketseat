@@ -1,10 +1,10 @@
-const express = require('express');
-const bodyParser = require('body-parser');
+import express from 'express';
+import { json, urlencoded } from 'body-parser';
 
 const app = express();
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(json());
+app.use(urlencoded({ extended: false }))
 
 app.listen(3000, console.log("Rodando na porta 3000"))
 app.get("/rocketseat", (req, res) => {
@@ -12,5 +12,4 @@ app.get("/rocketseat", (req, res) => {
 });
 
 //Repassando para o controller o app
-require('./controller/authController')(app);
-require('./controller/projectController')(app);
+require('./controller/index')(app);
