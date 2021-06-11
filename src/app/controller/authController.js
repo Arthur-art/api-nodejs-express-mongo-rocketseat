@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const authConfig = require('../../config/auth.json');
+const mailer = require('../../modules/mailer');
 
 const router = express.Router()
 
@@ -69,8 +70,28 @@ router.post("/forgot_password", async (req, res) => {
         const now = new Date();
         now.setHours(now.getHours() + 1);
 
+        await User.findByIdAndUpdate(user.id, {
+            '$set': {
+                passwordResetToken: token,
+                passwordResetExpires: now
+            }
+        })
 
+        //res.send({ token: token, status: 'Auth - OK', description: 'Recuperacao de senha' });
 
+        //Se tudo for validado, será enviado o email para o usuario recuperar a senha
+        mailer.sendMail({
+            to: email,
+            from: 'arthur.rocketseat@gmail.com',
+            template: 'auth/forgotPassword',
+            contex: { token }
+        }, (error) => {
+            if (error) {
+                res.send({ error: `Erro ao tentar enviar email, ${error}` })
+            } else {
+                res.send({ ok: `Email enviado para ${email}` })
+            }
+        });
 
     } catch (error) {
         res.status(400).send({ error: 'Erro ao tentar recuperar senha' })
