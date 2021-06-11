@@ -61,3 +61,6 @@ adicionados ao index do projeto
 # Implementando mailtrap para realizar testes de envio de email 
 - Para node 
     - npm install nodemailer
+
+# Instalando module para trabalhar com templates de email
+- npm install nodemailer-express-handlebars
