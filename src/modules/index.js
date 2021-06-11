@@ -1,11 +1,12 @@
 const nodemailer = require('nodemailer');
+const {host, port, user, pass} = require('../config/mail.json')
 
 var transport = nodemailer.createTransport({
-    host: "smtp.mailtrap.io",
-    port: 2525,
+    host,
+    port,
     auth: {
-      user: "e347708221a345",
-      pass: "e2649f5bd4f4d2"
+      user,
+      pass
     }
   });
 

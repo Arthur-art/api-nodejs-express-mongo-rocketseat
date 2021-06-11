@@ -58,6 +58,6 @@ sudo systemctl restart mongod
 - Criando metodo no index.js do controller para que todos os controllers agora sejam automaticamente 
 adicionados ao index do projeto
 
-# Utilizando mailtrap para realizar testes de envio de email 
+# Implementando mailtrap para realizar testes de envio de email 
 - Para node 
     - npm install nodemailer
