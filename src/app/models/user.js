@@ -18,6 +18,14 @@ const UserSchema = new mongoose.Schema({
         required: true,
         select: false
     },
+    passwordResetToken: {
+        type: String,
+        select: false
+    },
+    passwordResetExpires: {
+        type: Date,
+        select: false
+    },
     createdAt: {
         type: Date,
         default: Date.now()
@@ -25,7 +33,7 @@ const UserSchema = new mongoose.Schema({
 });
 
 //antes de salvar o user
-UserSchema.pre('save', async function(next){
+UserSchema.pre('save', async function (next) {
     const hash = await bcrypt.hash(this.password, 10);
     this.password = hash;
 

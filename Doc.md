@@ -64,3 +64,9 @@ adicionados ao index do projeto
 
 # Instalando module para trabalhar com templates de email
 - npm install nodemailer-express-handlebars
+
+# Criando rota no authController para envio de email afim de recuperar a senha
+
+# Adicionando novas colunas na model user para salvar token de recuperar senha
+- Nota: 
+    - No mongodb não é necessário rodar as migrations;
