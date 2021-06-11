@@ -96,7 +96,28 @@ router.post("/forgot_password", async (req, res) => {
     } catch (error) {
         res.status(400).send({ error: 'Erro ao tentar recuperar senha' })
     }
-})
+});
+
+router.post("/reset_password", async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        const user = await User.findOne({ email })
+            .select('+passwordResetToken passwordResetExpires');
+
+        if (!user) {
+            res.send('Usuario não cadastrado');
+        }
+        user.password = password;
+
+        await user.save();
+
+        res.send({ newPassword: user.password })
+
+    } catch (error) {
+        res.send({ error: error })
+    }
+});
 
 // Utilizando app(expressObjeto) do index, para sempre que acessar auth/register sera executado
 // o servico router de criacao de usuario

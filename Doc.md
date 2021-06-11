@@ -70,3 +70,5 @@ adicionados ao index do projeto
 # Adicionando novas colunas na model user para salvar token de recuperar senha
 - Nota: 
     - No mongodb não é necessário rodar as migrations;
+
+# Criando rota de reset de senha utilizando token do usuario
