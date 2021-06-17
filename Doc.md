@@ -72,3 +72,5 @@ adicionados ao index do projeto
     - No mongodb não é necessário rodar as migrations;
 
 # Criando rota de reset de senha utilizando token do usuario
+
+# Criando models project e task
