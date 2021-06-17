@@ -14,6 +14,7 @@ router.get("/", async (req, res)=>{
 router.post("/", async (req, res)=>{
     try{
         const project = await Project.create(req.body);
+        return res.send({project});
     }catch(error){
         res.status(401).send({error: 'Erro ao tentar criar um novo projeto'})
     }
