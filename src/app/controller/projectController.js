@@ -38,10 +38,10 @@ router.put("/", async (req, res)=>{
     res.send({user: req.userId});
 });
 
-router.delete("/", async (req, res)=>{
+router.delete("/:projectId", async (req, res)=>{
     try{
-        const projects = await Project.findByIdAndRemove(req.params.projectId).populate('user');
-        return res.send({projects}) 
+        await Project.findByIdAndRemove(req.params.projectId);
+        return res.send({delete: true}) 
     }catch(error){ 
        return res.status(401).send({error: error});
     }
