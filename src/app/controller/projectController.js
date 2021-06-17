@@ -39,7 +39,12 @@ router.put("/", async (req, res)=>{
 });
 
 router.delete("/", async (req, res)=>{
-    res.send({user: req.userId});
+    try{
+        const projects = await Project.findByIdAndRemove(req.params.projectId).populate('user');
+        return res.send({projects}) 
+    }catch(error){ 
+       return res.status(401).send({error: error});
+    }
 });
 
 module.exports = app => app.use('/projects', router);
